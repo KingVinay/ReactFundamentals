@@ -177,3 +177,15 @@ pages: 1210};
 
 updatedBook;
 
+// usage of template literal
+
+const summary = `${title}, a ${pages} pages long book, was written by ${author} and published in ${publicationDate.split("-")[0]}`;
+summary;
+
+// ternary operator
+const rester = pages>1000 ? "over 1000" : "below 1000";
+console.log(`the book has ${rester} pages`);
+
+const summary2 = `the book has ${hasMovieAdaptation? "" : "not"} been adapted into a movie`;
+summary2;
+
