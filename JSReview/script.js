@@ -186,6 +186,50 @@ summary;
 const rester = pages>1000 ? "over 1000" : "below 1000";
 console.log(`the book has ${rester} pages`);
 
-const summary2 = `the book has ${hasMovieAdaptation? "" : "not"} been adapted into a movie`;
+const summary1 = `the book has ${hasMovieAdaptation? "" : "not"} been adapted into a movie`;
+summary1;
+
+// Arrow Functions
+
+// function getYear(str){
+//   return str.plit("-")[0];
+// }
+
+const getYear = (str) => str.split("-")[0];
+// if multiple lines then { return statement;}
+
+console.log(getYear(publicationDate));
+
+// usage
+
+const summary2 = `${title}, a ${pages} pages long book, was written by ${author} and published in ${getYear(publicationDate)} and ${summary1}`;
 summary2;
 
+// Short Circuiting and Logical Operator
+
+const pagesRange = pages > 1000 ? "over a thousand" : "less than 1000";
+pagesRange;
+console.log(`The book has ${pagesRange} pages`);
+
+console.log(true && "Some string");
+console.log(false && "Some string");
+console.log(hasMovieAdaptation && "This book has a movie");
+
+// falsy: 0, '', null, undefined
+console.log("jonas" && "Some string");
+console.log(0 && "Some string");
+
+console.log(true || "Some string");
+console.log(false || "Some string");
+
+console.log(book.translations.spanish);
+
+const spanishTranslation = book.translations.spanish || "NOT TRANSLATED";
+spanishTranslation;
+
+console.log(book.reviews.librarything.reviewsCount);
+const countWrong = book.reviews.librarything.reviewsCount || "no data";
+countWrong;
+
+const count = book.reviews.librarything.reviewsCount ?? "no data";
+count;
