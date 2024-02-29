@@ -102,26 +102,26 @@ function Menu() {
   );
 }
 
-function Pizza(props) {
-  console.log(props);
+function Pizza({ pizzaObj }) {
+  console.log(pizzaObj);
 
   // if condition with return null for removing sold out pizza category
-  if (props.pizzaObj.soldOut) return null;
+  if (pizzaObj.soldOut) return null;
 
   return (
     <li className="pizza">
-      <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
+      <img src={pizzaObj.photoName} alt={pizzaObj.name} />
       <div>
-        <h3>{props.pizzaObj.name}</h3>
-        <p>{props.pizzaObj.ingredients}</p>
-        <span>{props.pizzaObj.price}</span>
+        <h3>{pizzaObj.name}</h3>
+        <p>{pizzaObj.ingredients}</p>
+        <span>{pizzaObj.price}</span>
       </div>
     </li>
   );
 }
 
 function Footer() {
-  const Hour = 15; //new Date().getHours();
+  const Hour = new Date().getHours();
   const openHour = 12;
   const closeHour = 22;
   const isOpen = Hour >= openHour && Hour <= closeHour;
@@ -138,7 +138,7 @@ function Footer() {
     <footer className="footer">
       {/* Using Short Circuiting */}
       {isOpen ? (
-        <Order closeHour={closeHour} />
+        <Order closeHour={closeHour} openHour={openHour} />
       ) : (
         <p>
           Sorry! We're closed. We're happy to welcome you from {openHour}:00 to{" "}
@@ -153,11 +153,12 @@ function Footer() {
 }
 
 // Extracting large component into different component and passing value using props
-function Order(props) {
+function Order({ closeHour, openHour }) {
   return (
     <div className="order">
       <p>
-        We're Open until {props.closeHour}:00. Come Visit us or order online
+        We're Open from {openHour}:00 to {closeHour}:00. Come Visit us or order
+        online
       </p>
       <button className="btn">Order</button>
     </div>
