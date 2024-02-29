@@ -75,12 +75,15 @@ function Menu() {
     <main className="menu">
       <h2>Our Menu</h2>
       {/* Map creates as array of all index of pizzaData into Pizza component */}
-      {numPizzas > 0 && (
+      {/* Use of ternary operator and map as if/else and for doesn't give result */}
+      {numPizzas > 0 ? (
         <ul className="pizzas">
           {pizzas.map((pizza) => (
             <Pizza pizzaObj={pizza} key={pizza.name} />
           ))}
         </ul>
+      ) : (
+        <p>We're still working on our menu. Please come back later!</p>
       )}
       ;
       {/* <Pizza
@@ -126,8 +129,16 @@ function Footer() {
   return (
     <footer className="footer">
       {/* Using Short Circuiting */}
-      {isOpen && (
-        <p>We're Open until {closeHour}:00. Come Visit us or order online</p>
+      {isOpen ? (
+        <div className="order">
+          <p>We're Open until {closeHour}:00. Come Visit us or order online</p>
+          <button className="btn">Order</button>
+        </div>
+      ) : (
+        <p>
+          Sorry! We're closed. We're happy to welcome you from {openHour}:00 to{" "}
+          {closeHour}:00.
+        </p>
       )}
       {/* {new Date().toLocaleTimeString()}.We're Currently Open!!! */}
     </footer>
