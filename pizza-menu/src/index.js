@@ -75,7 +75,7 @@ function Menu() {
     <main className="menu">
       <h2>Our Menu</h2>
       {/* Map creates as array of all index of pizzaData into Pizza component */}
-      {/* Use of ternary operator and map as if/else and for doesn't give result */}
+      {/* Use of ternary operator and map as if/else and for doesn't give result inside jsx */}
       {numPizzas > 0 ? (
         <ul className="pizzas">
           {pizzas.map((pizza) => (
@@ -104,6 +104,10 @@ function Menu() {
 
 function Pizza(props) {
   console.log(props);
+
+  // if condition with return null for removing sold out pizza category
+  if (props.pizzaObj.soldOut) return null;
+
   return (
     <li className="pizza">
       <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
@@ -126,14 +130,15 @@ function Footer() {
   // if(isOpen) alert("We're Currently Open!!!");
   // else alert("Sorry!, We're Closed");
 
+  // Multiple return used only if whole component is to be returned by condition
+
+  // if(!isOpen) return <p>We're Closed</p>
+
   return (
     <footer className="footer">
       {/* Using Short Circuiting */}
       {isOpen ? (
-        <div className="order">
-          <p>We're Open until {closeHour}:00. Come Visit us or order online</p>
-          <button className="btn">Order</button>
-        </div>
+        <Order closeHour={closeHour} />
       ) : (
         <p>
           Sorry! We're closed. We're happy to welcome you from {openHour}:00 to{" "}
@@ -145,6 +150,18 @@ function Footer() {
   );
 
   // return React.createElement("footer", null, "We're Currently Open!!!");
+}
+
+// Extracting large component into different component and passing value using props
+function Order(props) {
+  return (
+    <div className="order">
+      <p>
+        We're Open until {props.closeHour}:00. Come Visit us or order online
+      </p>
+      <button className="btn">Order</button>
+    </div>
+  );
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
