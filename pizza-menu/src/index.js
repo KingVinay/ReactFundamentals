@@ -77,11 +77,18 @@ function Menu() {
       {/* Map creates as array of all index of pizzaData into Pizza component */}
       {/* Use of ternary operator and map as if/else and for doesn't give result inside jsx */}
       {numPizzas > 0 ? (
-        <ul className="pizzas">
-          {pizzas.map((pizza) => (
-            <Pizza pizzaObj={pizza} key={pizza.name} />
-          ))}
-        </ul>
+        // <></>: React Fragment is used to have more than one tag without compressing under <div> and <React.Fragment key="abc"></React.Fragment> React Fragment with key
+        <>
+          <p>
+            Authentic Italian Cuisine. 6 creative dishes to choose from. All
+            from our stone oven, all organic, all delicious
+          </p>
+          <ul className="pizzas">
+            {pizzas.map((pizza) => (
+              <Pizza pizzaObj={pizza} key={pizza.name} />
+            ))}
+          </ul>
+        </>
       ) : (
         <p>We're still working on our menu. Please come back later!</p>
       )}
