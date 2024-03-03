@@ -2,27 +2,50 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./style.css";
 
+const skills = [
+  {
+    skill: "HTML+CSS",
+    level: "advanced",
+    color: "#2662EA",
+  },
+  {
+    skill: "JavaScript",
+    level: "advanced",
+    color: "#EFD81D",
+  },
+  {
+    skill: "GoLang",
+    level: "beginner",
+    color: "#C3DCAF",
+  },
+  {
+    skill: "Git and GitHub",
+    level: "intermediate",
+    color: "#E84F33",
+  },
+  {
+    skill: "React",
+    level: "advanced",
+    color: "#60DAFB",
+  },
+  {
+    skill: "Python+Django",
+    level: "intermediate",
+    color: "#FF3B00",
+  },
+];
+
 function App() {
+  const skilllist = skills;
   return (
     <div className="card">
       <Avatar />
       <div className="data">
         <Intro />
-        <div class="skill-list">
-          <SkillList color="blue" skillname="HTML + CSS" emoji="&#129321;" />
-          <SkillList color="yellow" skillname="Javascript" emoji="&#129322;" />
-          <SkillList
-            color="teal"
-            skillname="Python and Django"
-            emoji="&#129323;"
-          />
-          <SkillList
-            color="orange"
-            skillname="Git and Github"
-            emoji="&#129325;"
-          />
-          <SkillList color="aqua" skillname="React" emoji="&#129327;" />
-          <SkillList color="red" skillname="Unity" emoji="&#129320;" />
+        <div className="skill-list">
+          {skilllist.map((skills) => (
+            <SkillList skillsObj={skills} key={skills.skill} />
+          ))}
         </div>
       </div>
     </div>
@@ -30,7 +53,7 @@ function App() {
 }
 
 function Avatar() {
-  return <img class="avatar" src="./PhotoVinay.jpeg" alt="Vinay's pic" />;
+  return <img className="avatar" src="./PhotoVinay.jpeg" alt="Vinay's pic" />;
 }
 
 function Intro() {
@@ -46,11 +69,28 @@ function Intro() {
   );
 }
 
-function SkillList(props) {
+function SkillList({ skillsObj }) {
+  console.log(skillsObj);
   return (
-    <div class="skill" style={{ backgroundColor: props.color }}>
-      <span>{props.skillname}</span>
-      <span>{props.emoji}</span>
+    <div className="skill" style={{ backgroundColor: skillsObj.color }}>
+      <span>{skillsObj.skill}</span>
+
+      {/* Using Ternary Operator */}
+
+      {skillsObj.level === "advanced" ? (
+        <span>💪</span>
+      ) : skillsObj.level === "intermediate" ? (
+        <span>👍</span>
+      ) : (
+        <span>👶</span>
+      )}
+
+      {/* Another Method = if first condition true then code prints else short circuit and move to next line */}
+      {/* <span>
+        {level === "beginner" && "👶"} 
+        {level === "intermediate" && "👍"}
+        {level === "advanced" && "💪"}
+      </span> */}
     </div>
   );
 }
