@@ -7,19 +7,23 @@ const messages = [
 ];
 
 export default function App() {
+  // State are isolate or independent bw components
   const [step, setStep] = useState(1);
   const [isOpen, SetisOpen] = useState(true);
 
   function handlePrevious() {
-    if (step > 1) setStep(step - 1);
+    if (step > 1) setStep((s) => s - 1);
   }
   function handleNext() {
-    if (step < 3) setStep(step + 1);
+    // Correct way using callback
+    if (step < 3) setStep((s) => s + 1);
+    // Direct Way
+    // setStep(step+1);
   }
 
   return (
     <>
-      <button className="close" onClick={() => SetisOpen(!isOpen)}>
+      <button className="close" onClick={() => SetisOpen((open) => !open)}>
         &times;
       </button>
 
