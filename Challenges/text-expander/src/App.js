@@ -64,6 +64,10 @@ function TextExpander({
         {isExpanded
           ? `${children} `
           : `${children.substring(0, collapsedNumWords)}... `}
+
+        {/* Another way to collapse and expand text passed as children prop
+          
+           children.split(" ").slice(0,collapsedNumWords).join(" ") + "..."; */}
       </span>
       <span
         style={{ color: buttonColor }}
